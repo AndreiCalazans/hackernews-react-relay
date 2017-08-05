@@ -1,5 +1,5 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
-
+import { GC_AUTH_TOKEN } from './constants';
 const store = new Store(new RecordSource());
 
 const network = Network.create((operation, variables) => {
@@ -9,9 +9,10 @@ const network = Network.create((operation, variables) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem(GC_AUTH_TOKEN)}`
     },
     body: JSON.stringify({
-      query: opration.text,
+      query: operation.text,
       variables,
     }),
   }).then(response => {
@@ -19,7 +20,7 @@ const network = Network.create((operation, variables) => {
   })
 })
 
-const environment = new Environemt({
+const environment = new Environment({
   network,
   store,
 })

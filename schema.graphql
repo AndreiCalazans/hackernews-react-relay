@@ -1,16 +1,21 @@
+input AUTH_PROVIDER_EMAIL {
+  email: String!
+  password: String!
+}
+
+input AddToUsersLinksLinkInput {
+  postedByUserId: ID!
+  linksLinkId: ID!
+  clientMutationId: String!
+}
+
 type AddToUsersLinksPayload {
   viewer: Viewer!
   clientMutationId: String!
-  postedByUser: User
   linksLink: Link
-  postedByUserEdge: UserEdge
+  postedByUser: User
   linksLinkEdge: LinkEdge
-}
-
-input AddToUsersLinksUserInput {
-  linksLinkId: ID!
-  postedByUserId: ID!
-  clientMutationId: String!
+  postedByUserEdge: UserEdge
 }
 
 type AddToUsersVotesPayload {
@@ -41,6 +46,10 @@ type AddToVotesOnLinkPayload {
   votesVote: Vote
   linkLinkEdge: LinkEdge
   votesVoteEdge: VoteEdge
+}
+
+input AuthProviderSignupData {
+  email: AUTH_PROVIDER_EMAIL
 }
 
 # The `BigDecimal` scalar type represents signed fractional values with arbitrary precision.
@@ -217,276 +226,101 @@ type FileEdge {
 }
 
 input FileFilter {
-  # Logical AND on all given filters.
   AND: [FileFilter!]
-
-  # Logical OR on all given filters.
   OR: [FileFilter!]
   contentType: String
-
-  # All values that are not equal to given value.
   contentType_not: String
-
-  # All values that are contained in given list.
   contentType_in: [String!]
-
-  # All values that are not contained in given list.
   contentType_not_in: [String!]
-
-  # All values less than the given value.
   contentType_lt: String
-
-  # All values less than or equal the given value.
   contentType_lte: String
-
-  # All values greater than the given value.
   contentType_gt: String
-
-  # All values greater than or equal the given value.
   contentType_gte: String
-
-  # All values containing the given string.
   contentType_contains: String
-
-  # All values not containing the given string.
   contentType_not_contains: String
-
-  # All values starting with the given string.
   contentType_starts_with: String
-
-  # All values not starting with the given string.
   contentType_not_starts_with: String
-
-  # All values ending with the given string.
   contentType_ends_with: String
-
-  # All values not ending with the given string.
   contentType_not_ends_with: String
   createdAt: DateTime
-
-  # All values that are not equal to given value.
   createdAt_not: DateTime
-
-  # All values that are contained in given list.
   createdAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   createdAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   createdAt_lt: DateTime
-
-  # All values less than or equal the given value.
   createdAt_lte: DateTime
-
-  # All values greater than the given value.
   createdAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   createdAt_gte: DateTime
   id: ID
-
-  # All values that are not equal to given value.
   id_not: ID
-
-  # All values that are contained in given list.
   id_in: [ID!]
-
-  # All values that are not contained in given list.
   id_not_in: [ID!]
-
-  # All values less than the given value.
   id_lt: ID
-
-  # All values less than or equal the given value.
   id_lte: ID
-
-  # All values greater than the given value.
   id_gt: ID
-
-  # All values greater than or equal the given value.
   id_gte: ID
-
-  # All values containing the given string.
   id_contains: ID
-
-  # All values not containing the given string.
   id_not_contains: ID
-
-  # All values starting with the given string.
   id_starts_with: ID
-
-  # All values not starting with the given string.
   id_not_starts_with: ID
-
-  # All values ending with the given string.
   id_ends_with: ID
-
-  # All values not ending with the given string.
   id_not_ends_with: ID
   name: String
-
-  # All values that are not equal to given value.
   name_not: String
-
-  # All values that are contained in given list.
   name_in: [String!]
-
-  # All values that are not contained in given list.
   name_not_in: [String!]
-
-  # All values less than the given value.
   name_lt: String
-
-  # All values less than or equal the given value.
   name_lte: String
-
-  # All values greater than the given value.
   name_gt: String
-
-  # All values greater than or equal the given value.
   name_gte: String
-
-  # All values containing the given string.
   name_contains: String
-
-  # All values not containing the given string.
   name_not_contains: String
-
-  # All values starting with the given string.
   name_starts_with: String
-
-  # All values not starting with the given string.
   name_not_starts_with: String
-
-  # All values ending with the given string.
   name_ends_with: String
-
-  # All values not ending with the given string.
   name_not_ends_with: String
   secret: String
-
-  # All values that are not equal to given value.
   secret_not: String
-
-  # All values that are contained in given list.
   secret_in: [String!]
-
-  # All values that are not contained in given list.
   secret_not_in: [String!]
-
-  # All values less than the given value.
   secret_lt: String
-
-  # All values less than or equal the given value.
   secret_lte: String
-
-  # All values greater than the given value.
   secret_gt: String
-
-  # All values greater than or equal the given value.
   secret_gte: String
-
-  # All values containing the given string.
   secret_contains: String
-
-  # All values not containing the given string.
   secret_not_contains: String
-
-  # All values starting with the given string.
   secret_starts_with: String
-
-  # All values not starting with the given string.
   secret_not_starts_with: String
-
-  # All values ending with the given string.
   secret_ends_with: String
-
-  # All values not ending with the given string.
   secret_not_ends_with: String
   size: Int
-
-  # All values that are not equal to given value.
   size_not: Int
-
-  # All values that are contained in given list.
   size_in: [Int!]
-
-  # All values that are not contained in given list.
   size_not_in: [Int!]
-
-  # All values less than the given value.
   size_lt: Int
-
-  # All values less than or equal the given value.
   size_lte: Int
-
-  # All values greater than the given value.
   size_gt: Int
-
-  # All values greater than or equal the given value.
   size_gte: Int
   updatedAt: DateTime
-
-  # All values that are not equal to given value.
   updatedAt_not: DateTime
-
-  # All values that are contained in given list.
   updatedAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   updatedAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   updatedAt_lt: DateTime
-
-  # All values less than or equal the given value.
   updatedAt_lte: DateTime
-
-  # All values greater than the given value.
   updatedAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   updatedAt_gte: DateTime
   url: String
-
-  # All values that are not equal to given value.
   url_not: String
-
-  # All values that are contained in given list.
   url_in: [String!]
-
-  # All values that are not contained in given list.
   url_not_in: [String!]
-
-  # All values less than the given value.
   url_lt: String
-
-  # All values less than or equal the given value.
   url_lte: String
-
-  # All values greater than the given value.
   url_gt: String
-
-  # All values greater than or equal the given value.
   url_gte: String
-
-  # All values containing the given string.
   url_contains: String
-
-  # All values not containing the given string.
   url_not_contains: String
-
-  # All values starting with the given string.
   url_starts_with: String
-
-  # All values not starting with the given string.
   url_not_starts_with: String
-
-  # All values ending with the given string.
   url_ends_with: String
-
-  # All values not ending with the given string.
   url_not_ends_with: String
 }
 
@@ -517,12 +351,20 @@ type Link implements Node {
   updatedAt: DateTime!
   url: String!
   votes(filter: VoteFilter, orderBy: VoteOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection
+  _votesMeta: _QueryMeta!
 }
+
+# Meta information about the query.
+type _QueryMeta {
+  count: Int!
+}
+
+
 
 # A connection to a list of items.
 type LinkConnection {
   # Information to aid in pagination.
-  pageInfo: PageInfo!
+  pageInfo: PageInfo
 
   # A list of edges.
   edges: [LinkEdge]
@@ -534,181 +376,72 @@ type LinkConnection {
 # An edge in a connection.
 type LinkEdge {
   # The item at the end of the edge.
-  node: Link!
+  node: Link
 
   # A cursor for use in pagination.
-  cursor: String!
+  cursor: String
 }
 
 input LinkFilter {
-  # Logical AND on all given filters.
   AND: [LinkFilter!]
-
-  # Logical OR on all given filters.
   OR: [LinkFilter!]
   createdAt: DateTime
-
-  # All values that are not equal to given value.
   createdAt_not: DateTime
-
-  # All values that are contained in given list.
   createdAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   createdAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   createdAt_lt: DateTime
-
-  # All values less than or equal the given value.
   createdAt_lte: DateTime
-
-  # All values greater than the given value.
   createdAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   createdAt_gte: DateTime
   description: String
-
-  # All values that are not equal to given value.
   description_not: String
-
-  # All values that are contained in given list.
   description_in: [String!]
-
-  # All values that are not contained in given list.
   description_not_in: [String!]
-
-  # All values less than the given value.
   description_lt: String
-
-  # All values less than or equal the given value.
   description_lte: String
-
-  # All values greater than the given value.
   description_gt: String
-
-  # All values greater than or equal the given value.
   description_gte: String
-
-  # All values containing the given string.
   description_contains: String
-
-  # All values not containing the given string.
   description_not_contains: String
-
-  # All values starting with the given string.
   description_starts_with: String
-
-  # All values not starting with the given string.
   description_not_starts_with: String
-
-  # All values ending with the given string.
   description_ends_with: String
-
-  # All values not ending with the given string.
   description_not_ends_with: String
   id: ID
-
-  # All values that are not equal to given value.
   id_not: ID
-
-  # All values that are contained in given list.
   id_in: [ID!]
-
-  # All values that are not contained in given list.
   id_not_in: [ID!]
-
-  # All values less than the given value.
   id_lt: ID
-
-  # All values less than or equal the given value.
   id_lte: ID
-
-  # All values greater than the given value.
   id_gt: ID
-
-  # All values greater than or equal the given value.
   id_gte: ID
-
-  # All values containing the given string.
   id_contains: ID
-
-  # All values not containing the given string.
   id_not_contains: ID
-
-  # All values starting with the given string.
   id_starts_with: ID
-
-  # All values not starting with the given string.
   id_not_starts_with: ID
-
-  # All values ending with the given string.
   id_ends_with: ID
-
-  # All values not ending with the given string.
   id_not_ends_with: ID
   updatedAt: DateTime
-
-  # All values that are not equal to given value.
   updatedAt_not: DateTime
-
-  # All values that are contained in given list.
   updatedAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   updatedAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   updatedAt_lt: DateTime
-
-  # All values less than or equal the given value.
   updatedAt_lte: DateTime
-
-  # All values greater than the given value.
   updatedAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   updatedAt_gte: DateTime
   url: String
-
-  # All values that are not equal to given value.
   url_not: String
-
-  # All values that are contained in given list.
   url_in: [String!]
-
-  # All values that are not contained in given list.
   url_not_in: [String!]
-
-  # All values less than the given value.
   url_lt: String
-
-  # All values less than or equal the given value.
   url_lte: String
-
-  # All values greater than the given value.
   url_gt: String
-
-  # All values greater than or equal the given value.
   url_gte: String
-
-  # All values containing the given string.
   url_contains: String
-
-  # All values not containing the given string.
   url_not_contains: String
-
-  # All values starting with the given string.
   url_starts_with: String
-
-  # All values not starting with the given string.
   url_not_starts_with: String
-
-  # All values ending with the given string.
   url_ends_with: String
-
-  # All values not ending with the given string.
   url_not_ends_with: String
   postedBy: UserFilter
   votes_every: VoteFilter
@@ -753,13 +486,35 @@ type Mutation {
   deleteLink(input: DeleteLinkInput!): DeleteLinkPayload
   deleteUser(input: DeleteUserInput!): DeleteUserPayload
   deleteVote(input: DeleteVoteInput!): DeleteVotePayload
-  addToUsersLinks(input: AddToUsersLinksUserInput!): AddToUsersLinksPayload
+  addToUsersLinks(input: AddToUsersLinksLinkInput!): AddToUsersLinksPayload
   addToUsersVotes(input: AddToUsersVotesUserInput!): AddToUsersVotesPayload
   addToVotesOnLink(input: AddToVotesOnLinkLinkInput!): AddToVotesOnLinkPayload
-  removeFromUsersLinks(input: RemoveFromUsersLinksUserInput!): RemoveFromUsersLinksPayload
-  removeFromUsersVotes(input: RemoveFromUsersVotesUserInput!): RemoveFromUsersVotesPayload
-  removeFromVotesOnLink(input: RemoveFromVotesOnLinkLinkInput!): RemoveFromVotesOnLinkPayload
+  removeFromUsersLinks(input: RemoveFromUsersLinksLinkInput!): RemoveFromUsersLinksPayload
+  signinUser(input: SigninUserInput!): SigninPayload!
   createUser(input: SignupUserInput!): CreateUserPayload!
+}
+
+# If authentication was successful the payload contains the user and a token. If unsuccessful this payload is null.
+type SigninPayload {
+  token: String
+  user: User
+  clientMutationId: String
+  viewer: Viewer!
+}
+
+input SigninUserInput {
+  email: AUTH_PROVIDER_EMAIL
+  clientMutationId: String!
+}
+
+input SignupUserInput {
+  name: String!
+  linksIds: [ID!]
+  links: [UserlinksLink!]
+  votesIds: [ID!]
+  votes: [UservotesVote!]
+  clientMutationId: String!
+  authProvider: AuthProviderSignupData!
 }
 
 # An object with an ID
@@ -771,10 +526,10 @@ interface Node {
 # Information about pagination in a connection.
 type PageInfo {
   # When paginating forwards, are there more items?
-  hasNextPage: Boolean!
+  hasNextPage: Boolean
 
   # When paginating backwards, are there more items?
-  hasPreviousPage: Boolean!
+  hasPreviousPage: Boolean
 
   # When paginating backwards, the cursor to continue.
   startCursor: String
@@ -793,58 +548,19 @@ type Query {
   ): Node
 }
 
+input RemoveFromUsersLinksLinkInput {
+  postedByUserId: ID!
+  linksLinkId: ID!
+  clientMutationId: String!
+}
+
 type RemoveFromUsersLinksPayload {
   viewer: Viewer!
   clientMutationId: String!
-  postedByUser: User
   linksLink: Link
-  postedByUserEdge: UserEdge
+  postedByUser: User
   linksLinkEdge: LinkEdge
-}
-
-input RemoveFromUsersLinksUserInput {
-  linksLinkId: ID!
-  postedByUserId: ID!
-  clientMutationId: String!
-}
-
-type RemoveFromUsersVotesPayload {
-  viewer: Viewer!
-  clientMutationId: String!
-  userUser: User
-  votesVote: Vote
-  userUserEdge: UserEdge
-  votesVoteEdge: VoteEdge
-}
-
-input RemoveFromUsersVotesUserInput {
-  votesVoteId: ID!
-  userUserId: ID!
-  clientMutationId: String!
-}
-
-input RemoveFromVotesOnLinkLinkInput {
-  votesVoteId: ID!
-  linkLinkId: ID!
-  clientMutationId: String!
-}
-
-type RemoveFromVotesOnLinkPayload {
-  viewer: Viewer!
-  clientMutationId: String!
-  linkLink: Link
-  votesVote: Vote
-  linkLinkEdge: LinkEdge
-  votesVoteEdge: VoteEdge
-}
-
-input SignupUserInput {
-  name: String!
-  linksIds: [ID!]
-  links: [UserlinksLink!]
-  votesIds: [ID!]
-  votes: [UservotesVote!]
-  clientMutationId: String!
+  postedByUserEdge: UserEdge
 }
 
 input UpdateFile {
@@ -1028,134 +744,51 @@ type UserEdge {
 }
 
 input UserFilter {
-  # Logical AND on all given filters.
   AND: [UserFilter!]
-
-  # Logical OR on all given filters.
   OR: [UserFilter!]
   createdAt: DateTime
-
-  # All values that are not equal to given value.
   createdAt_not: DateTime
-
-  # All values that are contained in given list.
   createdAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   createdAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   createdAt_lt: DateTime
-
-  # All values less than or equal the given value.
   createdAt_lte: DateTime
-
-  # All values greater than the given value.
   createdAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   createdAt_gte: DateTime
   id: ID
-
-  # All values that are not equal to given value.
   id_not: ID
-
-  # All values that are contained in given list.
   id_in: [ID!]
-
-  # All values that are not contained in given list.
   id_not_in: [ID!]
-
-  # All values less than the given value.
   id_lt: ID
-
-  # All values less than or equal the given value.
   id_lte: ID
-
-  # All values greater than the given value.
   id_gt: ID
-
-  # All values greater than or equal the given value.
   id_gte: ID
-
-  # All values containing the given string.
   id_contains: ID
-
-  # All values not containing the given string.
   id_not_contains: ID
-
-  # All values starting with the given string.
   id_starts_with: ID
-
-  # All values not starting with the given string.
   id_not_starts_with: ID
-
-  # All values ending with the given string.
   id_ends_with: ID
-
-  # All values not ending with the given string.
   id_not_ends_with: ID
   name: String
-
-  # All values that are not equal to given value.
   name_not: String
-
-  # All values that are contained in given list.
   name_in: [String!]
-
-  # All values that are not contained in given list.
   name_not_in: [String!]
-
-  # All values less than the given value.
   name_lt: String
-
-  # All values less than or equal the given value.
   name_lte: String
-
-  # All values greater than the given value.
   name_gt: String
-
-  # All values greater than or equal the given value.
   name_gte: String
-
-  # All values containing the given string.
   name_contains: String
-
-  # All values not containing the given string.
   name_not_contains: String
-
-  # All values starting with the given string.
   name_starts_with: String
-
-  # All values not starting with the given string.
   name_not_starts_with: String
-
-  # All values ending with the given string.
   name_ends_with: String
-
-  # All values not ending with the given string.
   name_not_ends_with: String
   updatedAt: DateTime
-
-  # All values that are not equal to given value.
   updatedAt_not: DateTime
-
-  # All values that are contained in given list.
   updatedAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   updatedAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   updatedAt_lt: DateTime
-
-  # All values less than or equal the given value.
   updatedAt_lte: DateTime
-
-  # All values greater than the given value.
   updatedAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   updatedAt_gte: DateTime
   links_every: LinkFilter
   links_some: LinkFilter
@@ -1163,17 +796,6 @@ input UserFilter {
   votes_every: VoteFilter
   votes_some: VoteFilter
   votes_none: VoteFilter
-}
-
-input UserlinksLink {
-  description: String!
-  url: String!
-  votesIds: [ID!]
-  votes: [UserlinksLinkvotesVote!]
-}
-
-input UserlinksLinkvotesVote {
-  userId: ID
 }
 
 enum UserOrderBy {
@@ -1185,6 +807,17 @@ enum UserOrderBy {
   name_DESC
   updatedAt_ASC
   updatedAt_DESC
+}
+
+input UserlinksLink {
+  description: String!
+  url: String!
+  votesIds: [ID!]
+  votes: [UserlinksLinkvotesVote!]
+}
+
+input UserlinksLinkvotesVote {
+  userId: ID
 }
 
 input UservotesVote {
@@ -1208,7 +841,7 @@ input UservotesVotelinkLinkvotesVote {
 # This is the famous Relay viewer object
 type Viewer {
   allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
-  allLinks(filter: LinkFilter, orderBy: LinkOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
+  allLinks(filter: LinkFilter, orderBy: LinkOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection
   allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   allVotes(filter: VoteFilter, orderBy: VoteOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
   user: User
@@ -1222,15 +855,15 @@ type Viewer {
 type Vote implements Node {
   createdAt: DateTime!
   id: ID!
-  link(filter: LinkFilter): Link
+  link(filter: LinkFilter): Link!
   updatedAt: DateTime!
-  user(filter: UserFilter): User
+  user(filter: UserFilter): User!
 }
 
 # A connection to a list of items.
 type VoteConnection {
   # Information to aid in pagination.
-  pageInfo: PageInfo!
+  pageInfo: PageInfo
 
   # A list of edges.
   edges: [VoteEdge]
@@ -1242,104 +875,56 @@ type VoteConnection {
 # An edge in a connection.
 type VoteEdge {
   # The item at the end of the edge.
-  node: Vote!
+  node: Vote
 
   # A cursor for use in pagination.
-  cursor: String!
+  cursor: String
 }
 
 input VoteFilter {
-  # Logical AND on all given filters.
   AND: [VoteFilter!]
-
-  # Logical OR on all given filters.
   OR: [VoteFilter!]
   createdAt: DateTime
-
-  # All values that are not equal to given value.
   createdAt_not: DateTime
-
-  # All values that are contained in given list.
   createdAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   createdAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   createdAt_lt: DateTime
-
-  # All values less than or equal the given value.
   createdAt_lte: DateTime
-
-  # All values greater than the given value.
   createdAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   createdAt_gte: DateTime
   id: ID
-
-  # All values that are not equal to given value.
   id_not: ID
-
-  # All values that are contained in given list.
   id_in: [ID!]
-
-  # All values that are not contained in given list.
   id_not_in: [ID!]
-
-  # All values less than the given value.
   id_lt: ID
-
-  # All values less than or equal the given value.
   id_lte: ID
-
-  # All values greater than the given value.
   id_gt: ID
-
-  # All values greater than or equal the given value.
   id_gte: ID
-
-  # All values containing the given string.
   id_contains: ID
-
-  # All values not containing the given string.
   id_not_contains: ID
-
-  # All values starting with the given string.
   id_starts_with: ID
-
-  # All values not starting with the given string.
   id_not_starts_with: ID
-
-  # All values ending with the given string.
   id_ends_with: ID
-
-  # All values not ending with the given string.
   id_not_ends_with: ID
   updatedAt: DateTime
-
-  # All values that are not equal to given value.
   updatedAt_not: DateTime
-
-  # All values that are contained in given list.
   updatedAt_in: [DateTime!]
-
-  # All values that are not contained in given list.
   updatedAt_not_in: [DateTime!]
-
-  # All values less than the given value.
   updatedAt_lt: DateTime
-
-  # All values less than or equal the given value.
   updatedAt_lte: DateTime
-
-  # All values greater than the given value.
   updatedAt_gt: DateTime
-
-  # All values greater than or equal the given value.
   updatedAt_gte: DateTime
   link: LinkFilter
   user: UserFilter
+}
+
+enum VoteOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 input VotelinkLink {
@@ -1354,12 +939,29 @@ input VotelinkLinkvotesVote {
   userId: ID
 }
 
-enum VoteOrderBy {
-  createdAt_ASC
-  createdAt_DESC
-  id_ASC
-  id_DESC
-  updatedAt_ASC
-  updatedAt_DESC
+type Subscription {
+  Vote(filter: VoteSubscriptionFilter): VoteSubscriptionPayload
 }
 
+input VoteSubscriptionFilter {
+  mutation_in: [_ModelMutationType!]
+}
+
+type VoteSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Vote
+  updatedFields: [String!]
+  previousValues: VotePreviousValues
+}
+
+enum _ModelMutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type VotePreviousValues {
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
