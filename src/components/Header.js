@@ -40,6 +40,7 @@ class Header extends React.Component {
             :
             <Link to='/login'>Login</Link>
           }
+          <Link to='/users'>Users</Link>
         </div>
       </Container>
     )

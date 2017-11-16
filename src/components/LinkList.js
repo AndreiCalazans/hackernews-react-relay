@@ -22,7 +22,7 @@ const Container = styled.div`
 const SearchField = styled.div`
   width: 100%;
   position:relative;
-  right: 10px;
+  margin-bottom: 10px;
 
   input {
     width: 100px;

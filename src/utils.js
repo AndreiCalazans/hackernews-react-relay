@@ -29,7 +29,7 @@ function timeDifference(current, previous) {
    }
   
    else if (elapsed < milliSecondsPerYear) {
-     return Math.round(elapsed/milliSecondsPerMonth) + ' mo ago'
+     return Math.round(elapsed/milliSecondsPerMonth) + ' months ago'
    }
   
    else {
