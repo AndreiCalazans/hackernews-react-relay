@@ -44,7 +44,7 @@ class UserList extends React.Component {
           <input type='text' placeholder='Search link' onChange={this._handleSearch} value={this.state.filterVAlue} />
         </SearchField>
         {allUsers.edges.length > 0 ? 
-          allUsers.edges.map(({node}, index) => <User user={node} />)
+          allUsers.edges.map(({node}, index) => <User user={node} key={index} />)
           :
           this.renderEmptyMsg()
         }

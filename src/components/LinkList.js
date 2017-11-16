@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  createFragmentContainer,
+  // createFragmentContainer,
   createPaginationContainer,
   graphql
 } from 'react-relay';

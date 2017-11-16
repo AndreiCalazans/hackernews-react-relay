@@ -1,6 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import CreateLinkMutation from '../mutations/CreateLinkMutation';
 import { GC_USER_ID } from '../constants';
+
+const Wrapper = styled.div`
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  > input {
+    margin-bottom: 20px;
+    width: 200px;
+  }
+  > button {
+    width: 100px;
+  }
+`;
 
 class CreateLink extends React.Component {
 
@@ -11,8 +27,8 @@ class CreateLink extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <Wrapper>
+        
           <input
             type="text"
             value={this.state.description}
@@ -25,11 +41,9 @@ class CreateLink extends React.Component {
             onChange={(e) => this.setState({url: e.target.value })}
             placeholder="The URL for the link"
           />
-        </div>
-        <button
-          onClick={() => this.createLink()}
-        >Submit</button>
-      </div>
+        
+        <button onClick={() => this.createLink()}>Submit</button>
+      </Wrapper>
     )
   }
 

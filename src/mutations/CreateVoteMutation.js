@@ -3,7 +3,7 @@ import {
   graphql
 } from 'react-relay';
 import environment from '../Environment';
-import { ConnectionHandler } from 'relay-runtime';
+// import { ConnectionHandler } from 'relay-runtime';
 
 const mutation = graphql`
   mutation CreateVoteMutation($input: CreateVoteInput!) {

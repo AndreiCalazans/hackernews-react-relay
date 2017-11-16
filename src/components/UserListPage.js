@@ -5,7 +5,6 @@ import {
 } from 'react-relay';
 import environment from '../Environment';
 import UserList from './UserList';
-import { ITEMS_PER_PAGE } from '../constants';
 
 const UserListPageQuery = graphql`
   query UserListPageQuery {
@@ -21,9 +20,6 @@ class UserListPage extends React.Component {
     return (
       <QueryRenderer
         environment={environment}
-        variables={{
-          count: 1,
-        }}
         query={UserListPageQuery}
         render={({error, props}) => {
           if (error) {
