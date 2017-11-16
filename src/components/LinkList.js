@@ -68,7 +68,7 @@ class LinkList extends React.Component {
   }
 
   _refetchConnection() {
-    this.props.relay.refetchConnection(10,(e) => null, {
+    this.props.relay.refetchConnection(3,(e) => null, {
       filter: {
         description_contains: this.state.filterValue
       }
@@ -156,6 +156,9 @@ export default createPaginationContainer(LinkList,
       return {
         count: paginationInfo.count,
         after: paginationInfo.cursor,
+        filter: {
+          description_contains: '',
+        }
       }
     },
    }
