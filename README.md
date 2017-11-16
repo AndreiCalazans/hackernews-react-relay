@@ -1,6 +1,6 @@
-### HN React Relay
+# HN React Relay
 
-### The purpose of this repo is to illustrate examples of createPaginationContainer, createRefetchContainer, mutations and subscriptions using Relay Modern.
+The purpose of this repo is to illustrate examples of createPaginationContainer, createRefetchContainer, mutations and subscriptions using Relay Modern.
 
 to run locally
 1. clone repo
