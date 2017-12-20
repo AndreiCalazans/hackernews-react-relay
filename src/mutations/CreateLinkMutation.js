@@ -1,7 +1,4 @@
-import {
-  commitMutation,
-  graphql,
-} from 'react-relay';
+import { commitMutation, graphql } from 'react-relay';
 // import { ConnectionHandler } from 'relay-runtime';
 import environment from '../Environment';
 
@@ -23,25 +20,21 @@ const mutation = graphql`
 `;
 
 export default (postedById, description, url, callback) => {
-
   const variables = {
     input: {
       postedById,
       description,
       url,
-      clientMutationId: ""
-  },
-  }
-
-  commitMutation(
-    environment,
-    {
-      mutation,
-      variables,
-      onCompleted: () => {
-        callback()
-      },
-      onError: err => console.error(err),
+      clientMutationId: '',
     },
-  )
-}
+  };
+
+  commitMutation(environment, {
+    mutation,
+    variables,
+    onCompleted: () => {
+      callback();
+    },
+    onError: err => console.error(err),
+  });
+};

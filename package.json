@@ -52,15 +52,11 @@
     "relay": "relay-compiler --src ./src/ --schema schema.graphql schema.graphql",
     "relay:watch": "relay-compiler --src ./src/ --schema schema.graphql schema.graphql --watch",
     "test": "node scripts/test.js --env=jsdom",
-    "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 120",
+    "prettier": "prettier --write --single-quote true --trailing-comma all --print-width 80",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": [
-      "yarn prettier",
-      "eslint --fix",
-      "git add"
-    ]
+    "*.js": ["yarn prettier", "eslint --fix", "git add"]
   },
   "devDependencies": {
     "babel-plugin-relay": "^1.1.0",
@@ -70,16 +66,9 @@
     "relay-compiler": "^1.1.0"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
+    "setupFiles": ["<rootDir>/config/polyfills.js"],
+    "testMatch": ["<rootDir>/src/**/__tests__/**/*.js?(x)", "<rootDir>/src/**/?(*.)(spec|test).js?(x)"],
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
@@ -87,27 +76,15 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx"
-    ]
+    "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx"]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      "relay"
-    ]
+    "presets": ["react-app"],
+    "plugins": ["relay"]
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,15 +1,10 @@
-import {
-  graphql,
-  requestSubscription
-} from 'react-relay';
+import { graphql, requestSubscription } from 'react-relay';
 import environment from '../Environment';
 
 const newVoteSubscription = graphql`
   subscription NewVoteSubscription {
     # 1
-    Vote(filter: {
-      mutation_in: [CREATED]
-    }) {
+    Vote(filter: { mutation_in: [CREATED] }) {
       # 2
       node {
         id
@@ -28,7 +23,6 @@ const newVoteSubscription = graphql`
 `;
 
 export default () => {
-
   const subscriptionConfig = {
     subscription: newVoteSubscription,
     variables: {},
@@ -44,10 +38,7 @@ export default () => {
       link.getLinkedRecord('votes').setValue(newVoteCount, 'count');
     },
     onError: error => console.log('An error ocurred', error),
-  }
+  };
 
-  requestSubscription(
-    environment,
-    subscriptionConfig
-  )
-}
+  requestSubscription(environment, subscriptionConfig);
+};

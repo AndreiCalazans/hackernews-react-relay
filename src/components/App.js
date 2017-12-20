@@ -9,18 +9,17 @@ import UserListPage from './UserListPage';
 class App extends Component {
   render() {
     return (
-     <div>
-       <Header />
-       <div>
-         <Switch>
-           <Route exact path='/' component={LinkListPage} />
-           <Route exact path='/login' component={Login} />
-           <Route exact path='/create' component={CreateLink} />
-           <Route exact path='/users' component={UserListPage} />
-           
-         </Switch>
-       </div>
-     </div>
+      <div>
+        <Header />
+        <div>
+          <Switch>
+            <Route exact path="/" component={LinkListPage} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/create" component={CreateLink} />
+            <Route exact path="/users" component={UserListPage} />
+          </Switch>
+        </div>
+      </div>
     );
   }
 }

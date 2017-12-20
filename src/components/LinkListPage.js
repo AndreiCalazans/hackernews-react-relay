@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-  QueryRenderer,
-  graphql
-} from 'react-relay';
+import { QueryRenderer, graphql } from 'react-relay';
 import environment from '../Environment';
 import LinkList from './LinkList';
 import { ITEMS_PER_PAGE } from '../constants';
 
 const LinkListPageQuery = graphql`
-  query LinkListPageQuery(
-    $count: Int!,
-    $filter: LinkFilter,
-    $after: String,
-  ) {
+  query LinkListPageQuery($count: Int!, $filter: LinkFilter, $after: String) {
     viewer {
       ...LinkList_viewer
     }
@@ -20,7 +13,6 @@ const LinkListPageQuery = graphql`
 `;
 
 class LinkListPage extends React.Component {
-  
   render() {
     return (
       <QueryRenderer
@@ -29,19 +21,19 @@ class LinkListPage extends React.Component {
           count: ITEMS_PER_PAGE,
           filter: {
             description_contains: '',
-          }
+          },
         }}
         query={LinkListPageQuery}
-        render={({error, props}) => {
+        render={({ error, props }) => {
           if (error) {
-            return <div>{error.message}</ div>
+            return <div>{error.message}</div>;
           } else if (props) {
-            return <LinkList viewer={props.viewer} />
+            return <LinkList viewer={props.viewer} />;
           }
-          return <div>Loading</ div>
+          return <div>Loading</div>;
         }}
       />
-    )
+    );
   }
 }
 

@@ -350,7 +350,15 @@ type Link implements Node {
   postedBy(filter: UserFilter): User
   updatedAt: DateTime!
   url: String!
-  votes(filter: VoteFilter, orderBy: VoteOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection
+  votes(
+    filter: VoteFilter
+    orderBy: VoteOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): VoteConnection
   _votesMeta: _QueryMeta!
 }
 
@@ -358,8 +366,6 @@ type Link implements Node {
 type _QueryMeta {
   count: Int!
 }
-
-
 
 # A connection to a list of items.
 type LinkConnection {
@@ -716,10 +722,26 @@ type UpdateVotePayload {
 type User implements Node {
   createdAt: DateTime!
   id: ID!
-  links(filter: LinkFilter, orderBy: LinkOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection
+  links(
+    filter: LinkFilter
+    orderBy: LinkOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): LinkConnection
   name: String!
   updatedAt: DateTime!
-  votes(filter: VoteFilter, orderBy: VoteOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection
+  votes(
+    filter: VoteFilter
+    orderBy: VoteOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): VoteConnection
 }
 
 # A connection to a list of items.
@@ -840,10 +862,42 @@ input UservotesVotelinkLinkvotesVote {
 
 # This is the famous Relay viewer object
 type Viewer {
-  allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
-  allLinks(filter: LinkFilter, orderBy: LinkOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection
-  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  allVotes(filter: VoteFilter, orderBy: VoteOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): VoteConnection!
+  allFiles(
+    filter: FileFilter
+    orderBy: FileOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): FileConnection!
+  allLinks(
+    filter: LinkFilter
+    orderBy: LinkOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): LinkConnection
+  allUsers(
+    filter: UserFilter
+    orderBy: UserOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): UserConnection!
+  allVotes(
+    filter: VoteFilter
+    orderBy: VoteOrderBy
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): VoteConnection!
   user: User
   File(id: ID, secret: String, url: String): File
   Link(id: ID): Link

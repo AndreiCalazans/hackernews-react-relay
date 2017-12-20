@@ -1,11 +1,11 @@
-import {
-  commitMutation,
-  graphql
-} from 'react-relay'
-import environment from '../Environment'
+import { commitMutation, graphql } from 'react-relay';
+import environment from '../Environment';
 
 const mutation = graphql`
-  mutation CreateUserMutation($createUserInput: SignupUserInput!, $signinUserInput: SigninUserInput!) {
+  mutation CreateUserMutation(
+    $createUserInput: SignupUserInput!
+    $signinUserInput: SigninUserInput!
+  ) {
     createUser(input: $createUserInput) {
       user {
         id
@@ -18,7 +18,7 @@ const mutation = graphql`
       }
     }
   }
-`
+`;
 
 export default (name, email, password, callback) => {
   const variables = {
@@ -27,31 +27,28 @@ export default (name, email, password, callback) => {
       authProvider: {
         email: {
           email,
-          password
-        }
+          password,
+        },
       },
-      clientMutationId: ""
+      clientMutationId: '',
     },
     signinUserInput: {
       email: {
         email,
-        password
+        password,
       },
-      clientMutationId: ""
-    }
-  }
-
-  commitMutation(
-    environment,
-    {
-      mutation,
-      variables,
-      onCompleted: (response) => {
-        const id = response.createUser.user.id
-        const token = response.signinUser.token
-        callback(id, token)
-      },
-      onError: err => console.error(err),
+      clientMutationId: '',
     },
-  )
-}
+  };
+
+  commitMutation(environment, {
+    mutation,
+    variables,
+    onCompleted: response => {
+      const id = response.createUser.user.id;
+      const token = response.signinUser.token;
+      callback(id, token);
+    },
+    onError: err => console.error(err),
+  });
+};

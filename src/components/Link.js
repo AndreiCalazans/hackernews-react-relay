@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createFragmentContainer,
-  graphql
-} from 'react-relay';
+import { createFragmentContainer, graphql } from 'react-relay';
 import styled from 'styled-components';
 
 import { GC_USER_ID } from '../constants';
@@ -19,7 +16,7 @@ const Container = styled.div`
 `;
 
 const Count = styled.div`
-  display:flex;
+  display: flex;
   color: #717171;
   margin-right: 7px;
   > div {
@@ -39,12 +36,18 @@ class Link extends React.Component {
       <Container>
         <Count>
           <span>{+this.props.index + 1}.</span>
-          {userId && <div onClick={() => this._voteForLink()} >▴</div>}
+          {userId && <div onClick={() => this._voteForLink()}>▴</div>}
         </Count>
         <div>
-          <div>{this.props.link.description} ({this.props.link.url})</div>
-          <div className='votedBy'>{this.props.link.votes.count} votes | by {this.props.link.postedBy ? this.props.link.postedBy.name
-            : 'Unknown' } | {timeDifferenceForDate(this.props.link.createdAt)}
+          <div>
+            {this.props.link.description} ({this.props.link.url})
+          </div>
+          <div className="votedBy">
+            {this.props.link.votes.count} votes | by{' '}
+            {this.props.link.postedBy
+              ? this.props.link.postedBy.name
+              : 'Unknown'}{' '}
+            | {timeDifferenceForDate(this.props.link.createdAt)}
           </div>
         </div>
       </Container>
@@ -55,17 +58,17 @@ class Link extends React.Component {
     const userId = localStorage.getItem(GC_USER_ID);
     if (!userId) {
       console.log('Cant vote without user ID');
-      return
+      return;
     }
     const linkId = this.props.link.id;
 
     const canUserVoteOnLink = await this._userCanVoteOnLink(userId, linkId);
     if (canUserVoteOnLink) {
-      CreateVoteMutation(userId, linkId)
+      CreateVoteMutation(userId, linkId);
     } else {
       console.log('Current already voted for that link');
     }
-  }
+  };
 
   _userCanVoteOnLink = async (userId, linkId) => {
     const checkVoteQueryText = `
@@ -86,9 +89,15 @@ class Link extends React.Component {
     `;
     const checkVoteQuery = { text: checkVoteQueryText };
 
-    const result = await this.props.relay.environment._network.fetch(checkVoteQuery, {userId, linkId});
+    const result = await this.props.relay.environment._network.fetch(
+      checkVoteQuery,
+      {
+        userId,
+        linkId,
+      },
+    );
     return result.data.viewer.allVotes.edges.length === 0;
-  }
+  };
 }
 
 export default createFragmentContainer(
@@ -107,5 +116,5 @@ export default createFragmentContainer(
         name
       }
     }
-  `
+  `,
 );

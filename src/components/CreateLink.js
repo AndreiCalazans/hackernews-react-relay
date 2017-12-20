@@ -19,32 +19,30 @@ const Wrapper = styled.div`
 `;
 
 class CreateLink extends React.Component {
-
   state = {
     description: '',
     url: '',
-  }
+  };
 
   render() {
     return (
       <Wrapper>
-        
-          <input
-            type="text"
-            value={this.state.description}
-            onChange={(e) => this.setState({description: e.target.value })}
-            placeholder="A description for the link"
-          />
-          <input
-            type="text"
-            value={this.state.url}
-            onChange={(e) => this.setState({url: e.target.value })}
-            placeholder="The URL for the link"
-          />
-        
+        <input
+          type="text"
+          value={this.state.description}
+          onChange={e => this.setState({ description: e.target.value })}
+          placeholder="A description for the link"
+        />
+        <input
+          type="text"
+          value={this.state.url}
+          onChange={e => this.setState({ url: e.target.value })}
+          placeholder="The URL for the link"
+        />
+
         <button onClick={() => this.createLink()}>Submit</button>
       </Wrapper>
-    )
+    );
   }
 
   createLink = () => {
@@ -52,11 +50,12 @@ class CreateLink extends React.Component {
     const postedById = localStorage.getItem(GC_USER_ID);
     if (!postedById) {
       console.error('No User logged in');
-      return
+      return;
     }
-    CreateLinkMutation(postedById, description, url, () => this.props.history.push('/'));
-  }
-
+    CreateLinkMutation(postedById, description, url, () =>
+      this.props.history.push('/'),
+    );
+  };
 }
 
 export default CreateLink;
