@@ -1,7 +1,7 @@
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 
-import { GC_AUTH_TOKEN } from './constants';
+import {GC_AUTH_TOKEN} from './constants';
 const store = new Store(new RecordSource());
 
 const fetchQuery = (operation, variables) => { 
